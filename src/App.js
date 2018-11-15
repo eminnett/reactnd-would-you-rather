@@ -10,11 +10,11 @@ import FourOhFourPage from './pages/FourOhFour';
 import './App.scss';
 
 // Phase 1:
-// TODO: Add logic to support content tabs on the home page.
 // TODO: Add logic to enable submit buttons when there is somethng to submit.
 // TODO: Only show session bar (in nav) when there is a current user.
 // TODO: Add logic to handle logging out.
 // TODO: Add logic to redirect to the login page if a protected page is requested when this is no current user.
+// TODO: Add PropTypes where necessary.
 
 // Phase 2:
 // TODO: Add Redux to store and manage the application state.
