@@ -29,6 +29,13 @@ button {
         color: $WHITE;
         cursor: pointer;
     }
+    &:disabled,
+    &[disabled]{
+      border: 1px solid $ACCENT_COLOUR;
+      color: $ACCENT_COLOUR;
+      background: $WHITE;
+      cursor: default;
+    }
 }
 
 input {
@@ -41,6 +48,10 @@ input {
         box-shadow: none;
         outline: none;
     }
+}
+
+select {
+    cursor: pointer;
 }
 
 .app-header, .tabs {
