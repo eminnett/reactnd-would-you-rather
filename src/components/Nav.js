@@ -28,15 +28,21 @@ const Nav = (props) => (
             to='/leaderboard'
           >Leaderboard</Link>
         </div>
-        <div className="nav-group right">
-          <div className="dummy-navigator">
-            <div className="greeting">
-              Hello, User
+        { props.currentUser &&
+          <div className="nav-group right">
+            <div className="dummy-navigator">
+              <div className="greeting">
+                Hello, {props.currentUser}
+              </div>
+              <Avatar size="small"/>
             </div>
-            <Avatar size="small"/>
+            <Link
+              className="navigator"
+              to='/login'
+              onClick={props.logout}
+            >logout</Link>
           </div>
-          <Link className="navigator" to='/logout'>logout</Link>
-        </div>
+        }
       </nav>
     </header>
   </div>

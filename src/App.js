@@ -10,9 +10,7 @@ import FourOhFourPage from './pages/FourOhFour';
 import './App.scss';
 
 // Phase 1:
-// TODO: Only show session bar (in nav) when there is a current user.
-// TODO: Add logic to handle logging out.
-// TODO: Add logic to redirect to the login page if a protected page is requested when this is no current user.
+// TODO: Add logic to redirect to the login page if a protected page is requested when there is no current user.
 // TODO: Add PropTypes where necessary.
 
 // Phase 2:
@@ -36,15 +34,27 @@ import './App.scss';
 // TODO: Collect and list references and sources for this project.
 
 class App extends Component {
+  state = { currentUser: '' };
+
+  login = (currentUser) => {
+    this.setState({currentUser: currentUser});
+  }
+
+  logout = () => {
+    this.setState({currentUser: ''});
+  }
+
   render() {
     return (
       <div className="App">
-        <Route component={Nav} />
+        <Route render={({ location }) =>
+          <Nav location={location} currentUser={this.state.currentUser} logout={this.logout} />
+        } />
         <Switch>
           <Route exact path='/' component={HomePage}/>
           <Route exact path='/add' component={NewQuestionPage}/>
           <Route exact path='/leaderboard' component={LeaderboardPage}/>
-          <Route exact path='/login' component={LoginPage}/>
+          <Route exact path='/login' render={() => <LoginPage currentUser={this.state.currentUser} login={this.login} />}/>
           <Route path='/questions/:id' component={QuestionPage}/>
           <Route component={FourOhFourPage} />
         </Switch>

@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class LoginPage extends Component {
-  state = { selectedUser: '' };
+  state = { selectedUser: '', submitted: false };
 
   handleChange = (event) => {
     this.setState({selectedUser: event.target.value});
-  }
+  };
+
+  handleSubmission = (event) => {
+    this.props.login(this.state.selectedUser);
+    this.setState({submitted: true});
+  };
 
   render() {
+    if (this.state.submitted) {
+      return <Redirect to='/' />
+    }
+
     return (
       <div className="section-wrapper">
         <section>
@@ -20,7 +30,7 @@ class LoginPage extends Component {
               <div>To proceed, login as:</div>
               <select
                 defaultValue=""
-                onChange={this.handleChange}
+                onChange={this.handleChange.bind(this)}
               >
                 <option value="" disabled>Please select your account</option>
                 <option value="User 1">User 1</option>
@@ -31,6 +41,7 @@ class LoginPage extends Component {
             <button
               type="button"
               disabled={!this.state.selectedUser}
+              onClick={this.handleSubmission.bind(this)}
             >Submit Login</button>
           </div>
         </section>
