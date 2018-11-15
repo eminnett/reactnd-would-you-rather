@@ -13,11 +13,13 @@ const HomePage = () => (
         <UnansweredQuestion preview={true} />
         <UnansweredQuestion preview={true} />
         <UnansweredQuestion preview={true} />
+        {/* TODO: Add helpful message when the list is empty. */}
       </div>
       <div id="answered-question-list" className="question-list">
         <AnsweredQuestion preview={true} />
         <AnsweredQuestion preview={true} />
         <AnsweredQuestion preview={true} />
+        {/* TODO: Add helpful message when the list is empty. */}
       </div>
     </section>
   </div>
