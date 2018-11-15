@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import UnansweredQuestion from '../components/UnansweredQuestion';
 import AnsweredQuestion from '../components/AnsweredQuestion';
 
@@ -13,6 +14,10 @@ const navigatorClasses = (list, destination) => {
 
 
 class HomePage extends Component {
+  static propTypes = {
+    auth: PropTypes.object.isRequired
+  };
+
   state = {
     list: 'unanswered'
   }

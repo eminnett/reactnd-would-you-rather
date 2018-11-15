@@ -10,9 +10,6 @@ import LoginPage from './pages/Login';
 import FourOhFourPage from './pages/FourOhFour';
 import './App.scss';
 
-// Phase 1:
-// TODO: Add PropTypes where necessary.
-
 // Phase 2:
 // TODO: Add Redux to store and manage the application state.
 // TODO: Find and process a set of avatars to use for the project.

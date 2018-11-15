@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class LoginPage extends Component {
+  static propTypes = {
+    login: PropTypes.func.isRequired,
+    location: PropTypes.object.isRequired
+  };
+
+
   state = { selectedUser: '', submitted: false };
 
   handleChange = (event) => {
@@ -14,7 +21,7 @@ class LoginPage extends Component {
   };
 
   render() {
-    let { from } = (this.props.location && this.props.location.state) || { from: { pathname: "/" } };
+    let { from } = this.props.location.state || { from: { pathname: "/" } };
 
     if (this.state.submitted) {
       return <Redirect to={from} />

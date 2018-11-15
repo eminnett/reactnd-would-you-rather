@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const FourOhFourPage = (props) => (
   <div className="section-wrapper">
@@ -13,5 +14,9 @@ const FourOhFourPage = (props) => (
     </div>
   </div>
 );
+
+FourOhFourPage.propTypes = {
+  location: PropTypes.object.isRequired
+};
 
 export default FourOhFourPage;

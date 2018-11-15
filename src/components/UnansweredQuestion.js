@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Avatar from './Avatar';
 
 const UnansweredQuestion = (props) => (
@@ -41,5 +42,9 @@ const UnansweredQuestion = (props) => (
     </div>
   </div>
 );
+
+UnansweredQuestion.propTypes = {
+  preview: PropTypes.bool
+};
 
 export default UnansweredQuestion;

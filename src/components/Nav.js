@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Avatar from './Avatar';
 
 const navigatorClasses = (props, destination) => {
@@ -47,5 +48,11 @@ const Nav = (props) => (
     </header>
   </div>
 );
+
+Nav.propTypes = {
+  location: PropTypes.object.isRequired,
+  currentUser: PropTypes.string.isRequired,
+  logout: PropTypes.func.isRequired
+};
 
 export default Nav;

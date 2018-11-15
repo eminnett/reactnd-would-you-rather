@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // This pattern was copied from https://reacttraining.com/react-router/web/example/auth-workflow
 const PrivateRoute = ({ component: Component, auth, ...rest }) => (
@@ -19,5 +20,14 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => (
     }
   />
 );
+
+PrivateRoute.propTypes = {
+  component: PropTypes.oneOfType([
+    PropTypes.instanceOf(React.Component),
+    PropTypes.func
+  ]).isRequired,
+  auth: PropTypes.object.isRequired
+};
+
 
 export default PrivateRoute;

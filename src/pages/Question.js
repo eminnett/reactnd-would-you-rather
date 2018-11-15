@@ -4,7 +4,7 @@ import UnansweredQuestion from '../components/UnansweredQuestion';
 
 class QuestionPage extends Component {
   state = {
-    question: {answered: false}
+    question: { answered: false }
   }
   render() {
     return (
