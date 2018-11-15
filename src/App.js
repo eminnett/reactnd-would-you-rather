@@ -1,25 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Nav from './components/Nav';
+import HomePage from './pages/Home';
+import NewQuestionPage from './pages/NewQuestion';
+import QuestionPage from './pages/Question';
+import LeaderboardPage from './pages/Leaderboard';
+import LoginPage from './pages/Login';
+import FourOhFourPage from './pages/FourOhFour';
+import './App.scss';
 
 class App extends Component {
+  state = {
+    page: '/foo',
+    question: {answered: false}
+  }
+  routingSwitch = () => {
+    switch(this.state.page) {
+      case '/':
+        return <HomePage />
+      case '/add':
+        return <NewQuestionPage />
+      case '/questions/:id':
+        return <QuestionPage question={this.state.question}/>
+      case '/leaderboard':
+        return <LeaderboardPage />
+      case '/login':
+        return <LoginPage />
+      default:
+        return <FourOhFourPage />
+      }
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Nav />
+        { this.routingSwitch() }
       </div>
     );
   }

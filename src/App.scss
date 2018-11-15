@@ -1,0 +1,365 @@
+$TEXT_COLOUR:            #666666;
+$WHITE:                  #ffffff;
+$ACCENT_COLOUR:          #dddddd;
+$PRIMARY_COLOUR:         #018C96;
+$PRIMARY_COLOUR_DARK:    #016A66;
+$SECONDARY_COLOUR:       #efb52b;
+$SECONDARY_COLOUR_DARK:  #eb5401;
+
+$LOGO_SIZE: 400px;
+
+body {
+    color: $TEXT_COLOUR;
+}
+
+a {
+    text-decoration: none;
+    color: $TEXT_COLOUR;
+}
+
+button {
+    width: 100%;
+    padding: 5px;
+    font-size: 1em;
+    border: 1px solid $PRIMARY_COLOUR;
+    background: $WHITE;
+    color: $PRIMARY_COLOUR;
+    &:hover {
+        background: $PRIMARY_COLOUR_DARK;
+        color: $WHITE;
+        cursor: pointer;
+    }
+}
+
+input {
+    width: 100%;
+    font-size: 1em;
+    padding: 5px;
+    border: 1px solid $ACCENT_COLOUR;
+    &:focus {
+        border: 1px solid $PRIMARY_COLOUR;
+        box-shadow: none;
+        outline: none;
+    }
+}
+
+.app-header, .tabs {
+    width: 100%;
+    border-bottom: 5px solid $PRIMARY_COLOUR;
+    display: flex;
+    justify-content: center;
+}
+
+nav {
+    max-width: 800px;
+    width: 100%;
+    min-width: 550px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    .nav-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        &.right {
+            justify-content: flex-end;
+        }
+    }
+}
+
+.dummy-navigator, .navigator {
+    padding: 10px;
+}
+
+.navigator {
+    .tabs & {
+        width: 50%;
+        text-align: center;
+    }
+    &.is-active {
+        background: $PRIMARY_COLOUR;
+        color: white;
+        a {
+            color: $WHITE;
+        }
+        &:hover {
+            background: $PRIMARY_COLOUR;
+            a {
+                color: $WHITE;
+            }
+        }
+    }
+    &:hover {
+        background: $PRIMARY_COLOUR_DARK;
+        cursor: pointer;
+        color: white;
+        a {
+            color: $WHITE;
+        }
+    }
+}
+
+.section-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+    section {
+        width: 550px;
+        border: 2px solid $ACCENT_COLOUR;
+        h1 {
+            background: $ACCENT_COLOUR;
+            margin: 0;
+            padding: 10px 20px;
+            font-size: 1.2em;
+        }
+    }
+    .section-body-wrapper {
+        padding: 0 20px;
+        &.login-body-wrapper {
+            padding: 20px;
+        }
+    }
+
+    .buttons {
+        margin: 20px 0 ;
+        display: flex;
+        justify-content: space-between;
+        .button-wrapper {
+            width: 48%;
+        }
+    }
+}
+
+.question, .question-list {
+    padding: 0 20px;
+}
+
+.question {
+    .question-option {
+        display: flex;
+        padding: 5px 0;
+        input {
+            width: 7%;
+            position: relative;
+            top: -3px;
+        }
+        label {
+            width: 93%;
+        }
+    }
+
+    .answers {
+        display: flex;
+        flex-direction: column;
+        .answer {
+            min-height: 30px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .chosen-answer {
+            background: $PRIMARY_COLOUR;
+            color: $PRIMARY_COLOUR_DARK;
+        }
+        .alternative-answer {
+            background: $SECONDARY_COLOUR;
+            color: $SECONDARY_COLOUR_DARK;
+        }
+        .comparison-bar {
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            .chosen-bar {
+                height: 20px;
+                padding: 5px;
+                background: $PRIMARY_COLOUR;
+                color: $PRIMARY_COLOUR_DARK;
+            }
+            .alternative-bar {
+                height: 20px;
+                padding: 5px;
+                background: $SECONDARY_COLOUR;
+                color: $SECONDARY_COLOUR_DARK;
+            }
+        }
+    }
+}
+
+.component-wrapper {
+    margin: 20px 0;
+    border: 2px solid $ACCENT_COLOUR;
+    h2 {
+        background: $ACCENT_COLOUR;
+        margin: 0;
+        padding: 10px;
+        font-size: 1.2em;
+    }
+    .component-body {
+        display: flex;
+    }
+    .component-copy {
+        width: 100%;
+        margin: 20px;
+        vertical-align: top;
+    }
+    .prompt {
+        margin-bottom: 5px;
+    }
+    .teaser {
+        margin-bottom: 5px;
+        text-align: center;
+    }
+    &.answered-question {
+        .prompt, .teaser {
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.greeting {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.avatar-wrapper {
+    position: relative;
+    .avatar {
+        background: $SECONDARY_COLOUR_DARK;
+    }
+
+    &.small {
+        .avatar {
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+        }
+    }
+
+    &.large {
+        padding: 0 20px;
+        margin: 20px 0;
+        border-right: 1px solid $ACCENT_COLOUR;
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+        }
+    }
+}
+
+.rank-body-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px;
+    h2 {
+        font-size: 1.2em;
+        padding: 0;
+        background: none;
+    }
+    .rank-copy {
+        padding: 5px;
+        font-size: 1.1em;
+        text-align: right;
+        .number {
+            padding: 5px 10px;
+            background: $SECONDARY_COLOUR;
+            color: $SECONDARY_COLOUR_DARK;
+        }
+    }
+}
+
+.score-wrapper {
+    height: 80px;
+    padding: 10px 20px;
+    background: $SECONDARY_COLOUR;
+    margin: 20px;
+    margin-left: 0;
+    color: $SECONDARY_COLOUR_DARK;
+    text-align: center;
+    .score-label {
+        font-size: 1.2em;
+    }
+    .score {
+        padding-top: 12px;
+        font-weight: bold;
+        font-size: 2em;
+    }
+}
+
+.new-question {
+    h2 {
+        font-size: 1.1em;
+        margin: 20px 0 ;
+    }
+    .option-wrapper {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.1em;
+        margin: 10px 0;
+        position: relative;
+        height: 30px;
+        .elipsis {
+            margin-top: 5px;
+        }
+        input {
+            width: 475px;
+        }
+    }
+    .seperator {
+        margin: 10px 0;
+        text-align: center;
+    }
+}
+
+.four-oh-four {
+    h1 {
+        text-align: center;
+    }
+}
+
+.login-body-wrapper {
+    .selection-wrapper {
+        display: flex;
+        padding: 20px 0;
+        font-size: 1.4em;
+        justify-content: space-between;
+        select {
+            font-size: 1em;
+        }
+    }
+}
+
+// The code required to draw the Yin Yang shape was copied from this CSS Tricks Tutorial:
+// https://css-tricks.com/creating-yin-yang-loaders-web/
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .logo {
+        display: flex;
+        align-items: center;
+        width: $LOGO_SIZE; height: $LOGO_SIZE;
+        border-radius: 50%;
+        background: linear-gradient($PRIMARY_COLOUR 50%, $SECONDARY_COLOUR 0);
+
+        &:before, &:after {
+            flex: 1;
+            border: solid $LOGO_SIZE/6 $SECONDARY_COLOUR;
+            height: $LOGO_SIZE/6;
+            border-radius: 50%;
+            background: $PRIMARY_COLOUR;
+            content: ''
+        }
+
+        &:after {
+            border-color: $PRIMARY_COLOUR;
+            background: $SECONDARY_COLOUR;
+        }
+    }
+}
