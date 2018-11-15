@@ -24,6 +24,16 @@ import './App.scss';
 // TODO: Handle 404 if the question page url does not match a question ID.
 // TODO: Refactor the answer question flow so the answered question is shown before navigating away from the page.
 
+// Suggested Guide from the project page:
+// Step 1 - Design the shape of the state and create reducers.
+// Step 2 - Create a Redux store. Connect logger middleware (optional) and Redux Thunk middleware (alternatively, you can use Redux Saga, etc.).
+// Step 3 - For each view that needs access to the store, create the component and connect it to the store.
+// Step 4 - For the component you created in the last step, create actions and action creators. Check that everything works correctly.
+// Step 5 - Repeat Step 3 & Step 4 for each component that needs access to the store.
+// Step 6 - Create presentational components and confirm that everything works correctly.
+// Step 7 - Add React Router.
+// Step 8 - Add finishing touches and make sure the project meets the rubric.
+
 // Phase 3:
 // TODO: Make sure the project Rubric architecture requiremenst are met.
 // TODO: Tidy up styling and colour pallate.
