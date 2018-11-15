@@ -201,19 +201,13 @@ nav {
     .component-copy {
         width: 100%;
         margin: 20px;
-        vertical-align: top;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
-    .prompt {
-        margin-bottom: 5px;
-    }
+
     .teaser {
-        margin-bottom: 5px;
         text-align: center;
-    }
-    &.answered-question {
-        .prompt, .teaser {
-            margin-bottom: 15px;
-        }
     }
 }
 
@@ -252,11 +246,6 @@ nav {
 }
 
 .rank-body-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    margin: 20px;
     h2 {
         font-size: 1.2em;
         padding: 0;

@@ -5,7 +5,7 @@ const UserRank = () => (
   <div className="component-wrapper">
     <div className="component-body">
       <Avatar size="large"/>
-      <div className="component-copy-wrapper rank-body-wrapper">
+      <div className="component-copy rank-body-wrapper">
         <h2>
           User 2
         </h2>
