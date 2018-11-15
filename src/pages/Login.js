@@ -8,7 +8,6 @@ class LoginPage extends Component {
     location: PropTypes.object.isRequired
   };
 
-
   state = { selectedUser: '', submitted: false };
 
   handleChange = (event) => {
