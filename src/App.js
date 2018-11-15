@@ -12,8 +12,9 @@ import './App.scss';
 
 // Phase 2:
 // TODO: Add Redux to store and manage the application state.
-// TODO: Find and process a set of avatars to use for the project.
 // TODO: Add the API so the application data can be loaded dynamically.
+// TODO: Tie in Redux and refactor components so they are connected.
+// TODO: Create basic reducers and actions to support app behaviour.
 // TODO: Add logic to correctly sort questions on the home page (newest to oldest).
 // TODO: Add logic to correctly sort user rankings on the leaderboard page (ties are listed alphabetically by name).
 // TODO: Add logic to handle next and previous buttons on the question page.
@@ -39,6 +40,7 @@ import './App.scss';
 // TODO: Tidy up styling and colour pallate.
 // TODO: Write project README.
 // TODO: Collect and list references and sources for this project.
+// Avatars URL: https://www.behance.net/gallery/47035405/Free-avatars-flat-icons
 
 class App extends Component {
   state = { currentUser: '', isAuthenticated: false };
