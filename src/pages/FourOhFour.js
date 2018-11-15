@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FourOhFourPage = () => (
+const FourOhFourPage = (props) => (
   <div className="section-wrapper">
     <div className="four-oh-four">
       <h1>Uh Oh...</h1>
@@ -8,7 +8,7 @@ const FourOhFourPage = () => (
         This isn't the page you were looking for...
       </p>
       <p>
-        and I'm afraid it couldn't be found.
+        and I'm afraid <b>{props.location.pathname}</b> couldn't be found.
       </p>
     </div>
   </div>

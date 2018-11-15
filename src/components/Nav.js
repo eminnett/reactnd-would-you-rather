@@ -1,20 +1,32 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Avatar from './Avatar';
 
-const Nav = () => (
+const navigatorClasses = (props, destination) => {
+  let additionalClasses = '';
+  if (props.location.pathname === destination) {
+    additionalClasses += 'is-active';
+  }
+  return `navigator ${additionalClasses}`;
+}
+
+const Nav = (props) => (
   <div>
     <header className="app-header">
       <nav>
         <div className="nav-group left">
-          <div className="navigator is-active">
-            <a href='/'>Home</a>
-          </div>
-          <div className="navigator">
-            <a href='/add'>New Question</a>
-          </div>
-          <div className="navigator">
-            <a href='/leaderboard'>Leaderboard</a>
-          </div>
+          <Link
+            className={navigatorClasses(props, '/')}
+            to='/'
+          >Home</Link>
+          <Link
+            className={navigatorClasses(props, '/add')}
+            to='/add'
+          >New Question</Link>
+          <Link
+            className={navigatorClasses(props, '/leaderboard')}
+            to='/leaderboard'
+          >Leaderboard</Link>
         </div>
         <div className="nav-group right">
           <div className="dummy-navigator">
@@ -23,9 +35,7 @@ const Nav = () => (
             </div>
             <Avatar size="small"/>
           </div>
-          <div className="navigator">
-            <a href='/logout'>logout</a>
-          </div>
+          <Link className="navigator" to='/logout'>logout</Link>
         </div>
       </nav>
     </header>

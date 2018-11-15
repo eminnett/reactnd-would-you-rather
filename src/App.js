@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Nav from './components/Nav';
 import HomePage from './pages/Home';
 import NewQuestionPage from './pages/NewQuestion';
@@ -9,7 +10,6 @@ import FourOhFourPage from './pages/FourOhFour';
 import './App.scss';
 
 // Phase 1:
-// TODO: Add browser based routing.
 // TODO: Add logic to support content tabs on the home page.
 // TODO: Add logic to enable submit buttons when there is somethng to submit.
 // TODO: Only show session bar (in nav) when there is a current user.
@@ -37,31 +37,18 @@ import './App.scss';
 // TODO: Collect and list references and sources for this project.
 
 class App extends Component {
-  state = {
-    page: '/foo',
-    question: {answered: false}
-  }
-  routingSwitch = () => {
-    switch(this.state.page) {
-      case '/':
-        return <HomePage />
-      case '/add':
-        return <NewQuestionPage />
-      case '/questions/:id':
-        return <QuestionPage question={this.state.question}/>
-      case '/leaderboard':
-        return <LeaderboardPage />
-      case '/login':
-        return <LoginPage />
-      default:
-        return <FourOhFourPage />
-      }
-  }
   render() {
     return (
       <div className="App">
-        <Nav />
-        { this.routingSwitch() }
+        <Route component={Nav} />
+        <Switch>
+          <Route exact path='/' component={HomePage}/>
+          <Route exact path='/add' component={NewQuestionPage}/>
+          <Route exact path='/leaderboard' component={LeaderboardPage}/>
+          <Route exact path='/login' component={LoginPage}/>
+          <Route path='/questions/:id' component={QuestionPage}/>
+          <Route component={FourOhFourPage} />
+        </Switch>
       </div>
     );
   }
