@@ -11,7 +11,6 @@ import FourOhFourPage from './pages/FourOhFour';
 import './App.scss';
 
 // Phase 1:
-// TODO: Only show Unanswered Questions when a user is not logged in.
 // TODO: Add PropTypes where necessary.
 
 // Phase 2:
@@ -23,7 +22,7 @@ import './App.scss';
 // TODO: Add logic to handle next and previous buttons on the question page.
 // TODO: Add logic to handle answering a question.
 // TODO: Add logic to support 'The unanswered questions are shown by default.' This is should be the default whenever a user logs in.
-// TODO: Revise the answered question styling so in all cases the  umber of answers and percentage can bew shown for both options.
+// TODO: Revise the answered question styling so in all cases the number of answers and percentage can bew shown for both options.
 // TODO: Clearly mark the option that a user chose for answered questions.
 // TODO: Handle 404 if the question page url does not match a question ID.
 // TODO: Refactor the answer question flow so the answered question is shown before navigating away from the page.
@@ -52,7 +51,9 @@ class App extends Component {
           <Nav location={location} currentUser={this.state.currentUser} logout={this.logout} />
         } />
         <Switch>
-          <Route exact path='/' component={HomePage}/>
+          <Route exact path='/' render={({ location }) =>
+            <HomePage location={location} auth={this.state} />
+          } />
           <Route exact path='/login' render={({ location }) =>
             <LoginPage location={location} currentUser={this.state.currentUser} login={this.login} />
           } />

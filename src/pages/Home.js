@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import UnansweredQuestion from '../components/UnansweredQuestion';
 import AnsweredQuestion from '../components/AnsweredQuestion';
 
@@ -25,6 +26,38 @@ class HomePage extends Component {
   }
 
   render() {
+    let listBody = '';
+
+    if (this.state.list === 'answered') {
+      if ( !this.props.auth.isAuthenticated) {
+        listBody = <div className="help-message">
+          To view answered questions, please log in by visiting the <Link className="inline-link" to='/login'>login</Link> page.
+        </div>
+      } else if (false) { // TODO: Replace with a check for 0 'answered' questions.
+        listBody = <div className="help-message">
+          You haven't answered any questions yet.
+        </div>
+      } else {
+        listBody = <div>
+          <AnsweredQuestion preview={true} />
+          <AnsweredQuestion preview={true} />
+          <AnsweredQuestion preview={true} />
+        </div>
+      }
+    } else {
+      if (false) { // TODO: Replace with a check for 0 'unanswered' questions.
+        listBody = <div className="help-message">
+          You have answered all available questions.
+        </div>
+      } else {
+        listBody = <div>
+          <UnansweredQuestion preview={true} />
+          <UnansweredQuestion preview={true} />
+          <UnansweredQuestion preview={true} />
+        </div>
+      }
+    }
+
     return (
       <div className="section-wrapper">
         <section>
@@ -38,22 +71,9 @@ class HomePage extends Component {
               onClick={this.switchList('answered')}
             >Answered Questions</div>
           </nav>
-          { this.state.list === 'unanswered' &&
-            <div id="unanswered-question-list" className="question-list">
-              <UnansweredQuestion preview={true} />
-              <UnansweredQuestion preview={true} />
-              <UnansweredQuestion preview={true} />
-              {/* TODO: Add helpful message when the list is empty. */}
-            </div>
-          }
-          { this.state.list === 'answered' &&
-            <div id="answered-question-list" className="question-list">
-              <AnsweredQuestion preview={true} />
-              <AnsweredQuestion preview={true} />
-              <AnsweredQuestion preview={true} />
-              {/* TODO: Add helpful message when the list is empty. */}
-            </div>
-          }
+          <div className="question-list">
+            { listBody }
+          </div>
         </section>
       </div>
     );

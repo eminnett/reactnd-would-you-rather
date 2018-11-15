@@ -15,6 +15,13 @@ body {
 a {
     text-decoration: none;
     color: $TEXT_COLOUR;
+    &.inline-link {
+        color: $PRIMARY_COLOUR;
+        &:hover {
+            color: $PRIMARY_COLOUR_DARK;
+            cursor: pointer;
+        }
+    }
 }
 
 button {
@@ -139,6 +146,11 @@ nav {
             width: 48%;
         }
     }
+}
+
+.help-message {
+    padding: 150px 70px;
+    font-size: 1.2em;
 }
 
 .question, .question-list {
