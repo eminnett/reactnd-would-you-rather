@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Nav from './components/Nav';
+import PrivateRoute from './components/PrivateRoute';
 import HomePage from './pages/Home';
 import NewQuestionPage from './pages/NewQuestion';
 import QuestionPage from './pages/Question';
@@ -10,7 +11,7 @@ import FourOhFourPage from './pages/FourOhFour';
 import './App.scss';
 
 // Phase 1:
-// TODO: Add logic to redirect to the login page if a protected page is requested when there is no current user.
+// TODO: Only show Unanswered Questions when a user is not logged in.
 // TODO: Add PropTypes where necessary.
 
 // Phase 2:
@@ -34,14 +35,14 @@ import './App.scss';
 // TODO: Collect and list references and sources for this project.
 
 class App extends Component {
-  state = { currentUser: '' };
+  state = { currentUser: '', isAuthenticated: false };
 
   login = (currentUser) => {
-    this.setState({currentUser: currentUser});
+    this.setState({currentUser: currentUser, isAuthenticated: true});
   }
 
   logout = () => {
-    this.setState({currentUser: ''});
+    this.setState({currentUser: '', isAuthenticated: false});
   }
 
   render() {
@@ -52,10 +53,12 @@ class App extends Component {
         } />
         <Switch>
           <Route exact path='/' component={HomePage}/>
-          <Route exact path='/add' component={NewQuestionPage}/>
-          <Route exact path='/leaderboard' component={LeaderboardPage}/>
-          <Route exact path='/login' render={() => <LoginPage currentUser={this.state.currentUser} login={this.login} />}/>
-          <Route path='/questions/:id' component={QuestionPage}/>
+          <Route exact path='/login' render={({ location }) =>
+            <LoginPage location={location} currentUser={this.state.currentUser} login={this.login} />
+          } />
+          <PrivateRoute auth={this.state} exact path='/add' component={NewQuestionPage}/>
+          <PrivateRoute auth={this.state} exact path='/leaderboard' component={LeaderboardPage}/>
+          <PrivateRoute auth={this.state} path='/questions/:id' component={QuestionPage}/>
           <Route component={FourOhFourPage} />
         </Switch>
       </div>

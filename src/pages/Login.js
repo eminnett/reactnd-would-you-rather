@@ -14,8 +14,10 @@ class LoginPage extends Component {
   };
 
   render() {
+    let { from } = (this.props.location && this.props.location.state) || { from: { pathname: "/" } };
+
     if (this.state.submitted) {
-      return <Redirect to='/' />
+      return <Redirect to={from} />
     }
 
     return (
