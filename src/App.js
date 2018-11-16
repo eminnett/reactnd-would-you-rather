@@ -16,7 +16,6 @@ import './App.scss';
 // Phase 2:
 // TODO: Tie in Redux and refactor components so they are connected.
 // TODO: Create reducers and actions to handle questions.
-// TODO: Add logic to correctly sort user rankings on the leaderboard page (ties are listed alphabetically by name).
 // TODO: Add logic to handle next and previous buttons on the question page.
 // TODO: Add logic to handle answering a question.
 // TODO: Once questions can be created, double check home page questions are properly sorted (newest to oldest).
