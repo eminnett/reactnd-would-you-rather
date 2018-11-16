@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, Link, withRouter } from 'react-router-dom';
 import { setCurrentUser } from '../actions/currentUser';
-import PropTypes from 'prop-types';
 import Avatar from './Avatar';
 
 class Nav extends Component {
@@ -57,10 +56,6 @@ class Nav extends Component {
     )
   };
 }
-
-Nav.propTypes = {
-  location: PropTypes.object.isRequired
-};
 
 function mapStateToProps ({ currentUser, users }) {
   return {
