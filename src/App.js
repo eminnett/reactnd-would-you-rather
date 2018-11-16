@@ -40,6 +40,15 @@ import './App.scss';
 // TODO: Tidy up styling and colour pallate.
 // TODO: Write project README.
 // TODO: Collect and list references and sources for this project.
+// https://github.com/udacity/reactnd-redux-todos-goals
+// https://github.com/udacity/reactnd-chirper-app
+// https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+// https://css-tricks.com/creating-yin-yang-loaders-web/
+// https://stackoverflow.com
+// https://developer.mozilla.org
+// https://reacttraining.com/react-router
+// https://reactjs.org/docs/
+// https://tylermcginnis.com
 // Avatars URL: https://www.behance.net/gallery/47035405/Free-avatars-flat-icons
 
 class App extends Component {
