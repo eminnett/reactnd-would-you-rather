@@ -1,10 +1,12 @@
 import React, { Component }  from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Avatar from './Avatar';
 
 class UnansweredQuestion extends Component {
   static propTypes = {
-    preview: PropTypes.bool
+    preview: PropTypes.bool,
+    questionId: PropTypes.string.isRequired
   };
 
   state = { selection: '' };
@@ -14,20 +16,25 @@ class UnansweredQuestion extends Component {
   };
 
   render() {
+    const question = this.props.questions[this.props.questionId];
+    const user = this.props.users[question.author];
+    const askedByYou = this.props.currentUser && user.name === this.props.currentUser.name;
+    const askedPhrase = (askedByYou) ? 'You ask' : `${user.name} asks`;
+
     return (
       <div className="component-wrapper unanswered-question">
         <h2>
-          User 1 Asks:
+          {askedPhrase}:
         </h2>
         <div className="component-body">
-          <Avatar size="large" user={{avatarURL: "/avatars/128_1.png"}} />
+          <Avatar size="large" user={user} />
           { this.props.preview &&
             <div className="component-copy">
               <div className="prompt">
                 Would you rather...
               </div>
               <div className="teaser">
-                Answer 1?
+                {question.optionOne.text}
               </div>
               <div className="teaser">
                 Or...
@@ -48,7 +55,7 @@ class UnansweredQuestion extends Component {
                   name="question"
                   onChange={this.handleChange.bind(this)}
                 />
-                <label>Answer 1?</label>
+                <label>{question.optionOne.text}</label>
               </div>
               <div className="question-option">
                 <input
@@ -58,7 +65,7 @@ class UnansweredQuestion extends Component {
                   name="question"
                   onChange={this.handleChange.bind(this)}
                 />
-                <label>Answer 2?</label>
+                <label>{question.optionTwo.text}</label>
               </div>
               <button
                 type="button"
@@ -72,4 +79,8 @@ class UnansweredQuestion extends Component {
   }
 }
 
-export default UnansweredQuestion;
+function mapStateToProps ({ currentUser: currentUserId, users, questions }) {
+  return { currentUser: users[currentUserId], users, questions };
+}
+
+export default connect(mapStateToProps)(UnansweredQuestion);

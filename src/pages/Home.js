@@ -33,28 +33,24 @@ class HomePage extends Component {
         listBody = <div className="help-message">
           To view answered questions, please log in by visiting the <Link className="inline-link" to='/login'>login</Link> page.
         </div>
-      } else if (false) { // TODO: Replace with a check for 0 'answered' questions.
+      } else if (this.props.answeredQuestions.length === 0) {
         listBody = <div className="help-message">
           You haven't answered any questions yet.
         </div>
       } else {
-        listBody = <div>
-          <AnsweredQuestion preview={true} />
-          <AnsweredQuestion preview={true} />
-          <AnsweredQuestion preview={true} />
-        </div>
+        listBody = this.props.answeredQuestions.map((id) => (
+          <AnsweredQuestion key={id} preview={true} questionId={id} />
+        ));
       }
     } else {
-      if (false) { // TODO: Replace with a check for 0 'unanswered' questions.
+      if (this.props.unansweredQuestions.length === 0) {
         listBody = <div className="help-message">
           You have answered all available questions.
         </div>
       } else {
-        listBody = <div>
-          <UnansweredQuestion preview={true} />
-          <UnansweredQuestion preview={true} />
-          <UnansweredQuestion preview={true} />
-        </div>
+        listBody = this.props.unansweredQuestions.map((id) => (
+          <UnansweredQuestion key={id} preview={true} questionId={id} />
+        ));
       }
     }
 
@@ -80,10 +76,28 @@ class HomePage extends Component {
   }
 }
 
-function mapStateToProps ({ currentUser }) {
-  return {
-    isAuthenticated: currentUser
-  };
+function mapStateToProps ({ currentUser: currentUserId, users, questions }) {
+  let props = {
+    currentUser: currentUserId ? users[currentUserId] : null,
+    isAuthenticated: currentUserId !== null,
+    unansweredQuestions: [],
+    answeredQuestions: []
+   };
+  const sortedIds = Object.keys(questions)
+    .sort((a,b) => questions[b].timestamp - questions[a].timestamp);
+
+  for (let id of sortedIds) {
+    if (props.isAuthenticated) {
+      if (props.currentUser.answers.hasOwnProperty(id)) {
+        props.answeredQuestions.push(id);
+      } else {
+        props.unansweredQuestions.push(id);
+      }
+    } else {
+      props.unansweredQuestions.push(id);
+    }
+  }
+  return props;
 }
 
 export default withRouter(connect(mapStateToProps)(HomePage));

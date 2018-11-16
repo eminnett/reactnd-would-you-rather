@@ -63,9 +63,9 @@ class LoginPage extends Component {
 }
 
 function mapStateToProps ({ users }) {
-  const keys = Object.keys(users).sort();
+  const sortedKeys = Object.keys(users).sort();
   return {
-    users: keys.map((k) => users[k])
+    users: sortedKeys.map((k) => users[k])
   };
 }
 
