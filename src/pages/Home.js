@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 import UnansweredQuestion from '../components/UnansweredQuestion';
 import AnsweredQuestion from '../components/AnsweredQuestion';
 
@@ -12,12 +12,7 @@ const navigatorClasses = (list, destination) => {
   return `navigator ${additionalClasses}`;
 }
 
-
 class HomePage extends Component {
-  static propTypes = {
-    auth: PropTypes.object.isRequired
-  };
-
   state = {
     list: 'unanswered'
   }
@@ -34,7 +29,7 @@ class HomePage extends Component {
     let listBody = '';
 
     if (this.state.list === 'answered') {
-      if ( !this.props.auth.isAuthenticated) {
+      if ( !this.props.isAuthenticated) {
         listBody = <div className="help-message">
           To view answered questions, please log in by visiting the <Link className="inline-link" to='/login'>login</Link> page.
         </div>
@@ -85,4 +80,10 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+function mapStateToProps ({ currentUser }) {
+  return {
+    isAuthenticated: currentUser
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(HomePage));

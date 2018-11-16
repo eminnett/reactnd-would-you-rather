@@ -4,7 +4,7 @@ import Avatar from './Avatar';
 const UserRank = () => (
   <div className="component-wrapper">
     <div className="component-body">
-      <Avatar size="large"/>
+      <Avatar size="large" user={{avatarURL: "/avatars/128_1.png"}} />
       <div className="component-copy rank-body-wrapper">
         <h2>
           User 2

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { populateData } from './actions/shared';
+import LoadingBar from 'react-redux-loading'
 import Nav from './components/Nav';
 import PrivateRoute from './components/PrivateRoute';
 import HomePage from './pages/Home';
@@ -11,10 +14,8 @@ import FourOhFourPage from './pages/FourOhFour';
 import './App.scss';
 
 // Phase 2:
-// TODO: Add Redux to store and manage the application state.
-// TODO: Add the API so the application data can be loaded dynamically.
 // TODO: Tie in Redux and refactor components so they are connected.
-// TODO: Create basic reducers and actions to support app behaviour.
+// TODO: Create reducers and actions to handle questionsr.
 // TODO: Add logic to correctly sort questions on the home page (newest to oldest).
 // TODO: Add logic to correctly sort user rankings on the leaderboard page (ties are listed alphabetically by name).
 // TODO: Add logic to handle next and previous buttons on the question page.
@@ -52,32 +53,21 @@ import './App.scss';
 // Avatars URL: https://www.behance.net/gallery/47035405/Free-avatars-flat-icons
 
 class App extends Component {
-  state = { currentUser: '', isAuthenticated: false };
-
-  login = (currentUser) => {
-    this.setState({currentUser: currentUser, isAuthenticated: true});
-  }
-
-  logout = () => {
-    this.setState({currentUser: '', isAuthenticated: false});
+  componentDidMount() {
+    this.props.dispatch(populateData())
   }
 
   render() {
     return (
       <div className="App">
-        <Route render={({ location }) =>
-          <Nav location={location} currentUser={this.state.currentUser} logout={this.logout} />
-        } />
+        <LoadingBar />
+        <Route  component={Nav} />
         <Switch>
-          <Route exact path='/' render={({ location }) =>
-            <HomePage location={location} auth={this.state} />
-          } />
-          <Route exact path='/login' render={({ location }) =>
-            <LoginPage location={location} currentUser={this.state.currentUser} login={this.login} />
-          } />
-          <PrivateRoute auth={this.state} exact path='/add' component={NewQuestionPage}/>
-          <PrivateRoute auth={this.state} exact path='/leaderboard' component={LeaderboardPage}/>
-          <PrivateRoute auth={this.state} path='/questions/:id' component={QuestionPage}/>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/login' component={LoginPage} />
+          <PrivateRoute exact path='/add' component={NewQuestionPage}/>
+          <PrivateRoute exact path='/leaderboard' component={LeaderboardPage}/>
+          <PrivateRoute path='/questions/:id' component={QuestionPage}/>
           <Route component={FourOhFourPage} />
         </Switch>
       </div>
@@ -85,4 +75,10 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps (state) {
+  return {
+    loading: Object.keys(state.users).length === 0
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(App));

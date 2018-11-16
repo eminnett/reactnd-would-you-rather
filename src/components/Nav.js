@@ -1,58 +1,72 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { NavLink, Link, withRouter } from 'react-router-dom';
+import { setCurrentUser } from '../actions/currentUser';
 import PropTypes from 'prop-types';
 import Avatar from './Avatar';
 
-const navigatorClasses = (props, destination) => {
-  let additionalClasses = '';
-  if (props.location.pathname === destination) {
-    additionalClasses += 'is-active';
-  }
-  return `navigator ${additionalClasses}`;
+class Nav extends Component {
+  logout = (event) => {
+    event.preventDefault();
+    this.props.dispatch(setCurrentUser(null));
+  };
+
+  render() {
+    return (
+      <div>
+        <header className="app-header">
+          <nav>
+            <div className="nav-group left">
+              <NavLink
+                className="navigator"
+                activeClassName="is-active"
+                exact
+                to='/'
+              >Home</NavLink>
+              <NavLink
+                className="navigator"
+                activeClassName="is-active"
+                exact
+                to='/add'
+              >New Question</NavLink>
+              <NavLink
+                className="navigator"
+                activeClassName="is-active"
+                exact
+                to='/leaderboard'
+              >Leaderboard</NavLink>
+            </div>
+            { this.props.isAuthenticated &&
+              <div className="nav-group right">
+                <div className="dummy-navigator">
+                  <div className="greeting">
+                    Hello, {this.props.currentUser.name}
+                  </div>
+                  <Avatar size="small" user={this.props.currentUser} />
+                </div>
+                <Link
+                  className="navigator"
+                  to='/login'
+                  onClick={this.logout.bind(this)}
+                >logout</Link>
+              </div>
+            }
+          </nav>
+        </header>
+      </div>
+    )
+  };
 }
 
-const Nav = (props) => (
-  <div>
-    <header className="app-header">
-      <nav>
-        <div className="nav-group left">
-          <Link
-            className={navigatorClasses(props, '/')}
-            to='/'
-          >Home</Link>
-          <Link
-            className={navigatorClasses(props, '/add')}
-            to='/add'
-          >New Question</Link>
-          <Link
-            className={navigatorClasses(props, '/leaderboard')}
-            to='/leaderboard'
-          >Leaderboard</Link>
-        </div>
-        { props.currentUser &&
-          <div className="nav-group right">
-            <div className="dummy-navigator">
-              <div className="greeting">
-                Hello, {props.currentUser}
-              </div>
-              <Avatar size="small"/>
-            </div>
-            <Link
-              className="navigator"
-              to='/login'
-              onClick={props.logout}
-            >logout</Link>
-          </div>
-        }
-      </nav>
-    </header>
-  </div>
-);
-
 Nav.propTypes = {
-  location: PropTypes.object.isRequired,
-  currentUser: PropTypes.string.isRequired,
-  logout: PropTypes.func.isRequired
+  location: PropTypes.object.isRequired
 };
 
-export default Nav;
+function mapStateToProps ({ currentUser, users }) {
+  return {
+    isAuthenticated: currentUser,
+    currentUser: currentUser ? users[currentUser] : ''
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(Nav));

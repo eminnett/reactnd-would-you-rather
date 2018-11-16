@@ -20,7 +20,7 @@ class UnansweredQuestion extends Component {
           User 1 Asks:
         </h2>
         <div className="component-body">
-          <Avatar size="large"/>
+          <Avatar size="large" user={{avatarURL: "/avatars/128_1.png"}} />
           { this.props.preview &&
             <div className="component-copy">
               <div className="prompt">

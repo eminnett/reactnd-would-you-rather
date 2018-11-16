@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setCurrentUser } from '../actions/currentUser'
+import { Redirect, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class LoginPage extends Component {
   static propTypes = {
-    login: PropTypes.func.isRequired,
     location: PropTypes.object.isRequired
   };
 
@@ -15,7 +16,10 @@ class LoginPage extends Component {
   };
 
   handleSubmission = (event) => {
-    this.props.login(this.state.selectedUser);
+    event.preventDefault();
+
+    this.props.dispatch(setCurrentUser(this.state.selectedUser));
+
     this.setState({submitted: true});
   };
 
@@ -41,9 +45,9 @@ class LoginPage extends Component {
                 onChange={this.handleChange.bind(this)}
               >
                 <option value="" disabled>Please select your account</option>
-                <option value="User 1">User 1</option>
-                <option value="User 2">User 2</option>
-                <option value="User 3">User 3</option>
+                { this.props.users.map((user) => (
+                  <option key={user.id} value={user.id}>{user.name}</option>
+                ))}
               </select>
             </div>
             <button
@@ -58,4 +62,11 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+function mapStateToProps ({ users }) {
+  const keys = Object.keys(users).sort();
+  return {
+    users: keys.map((k) => users[k])
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(LoginPage));
