@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setCurrentUser } from '../actions/currentUser'
+import { setCurrentUser } from '../actions/currentUser';
 import { Redirect, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 

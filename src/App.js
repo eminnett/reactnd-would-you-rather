@@ -14,30 +14,12 @@ import FourOhFourPage from './pages/FourOhFour';
 import './App.scss';
 
 // Phase 2:
-// TODO: Tie in Redux and refactor components so they are connected.
-// TODO: Create reducers and actions to handle questions.
-// TODO: Add logic to handle next and previous buttons on the question page.
-// TODO: Add logic to handle answering a question.
-// TODO: Once questions can be created, double check home page questions are properly sorted (newest to oldest).
-// TODO: Add logic to support 'The unanswered questions are shown by default.' This is should be the default whenever a user logs in.
-// TODO: Revise the answered question styling so in all cases the number of answers and percentage can bew shown for both options.
-// TODO: Clearly mark the option that a user chose for answered questions.
-// TODO: Handle 404 if the question page url does not match a question ID.
-// TODO: Refactor the answer question flow so the answered question is shown before navigating away from the page.
-
-// Suggested Guide from the project page:
-// Step 1 - Design the shape of the state and create reducers.
-// Step 2 - Create a Redux store. Connect logger middleware (optional) and Redux Thunk middleware (alternatively, you can use Redux Saga, etc.).
-// Step 3 - For each view that needs access to the store, create the component and connect it to the store.
-// Step 4 - For the component you created in the last step, create actions and action creators. Check that everything works correctly.
-// Step 5 - Repeat Step 3 & Step 4 for each component that needs access to the store.
-// Step 6 - Create presentational components and confirm that everything works correctly.
-// Step 7 - Add React Router.
-// Step 8 - Add finishing touches and make sure the project meets the rubric.
+// TODO: Fix answer question reducer so the question votes are updated too.
+// TODO: Fix create question reducer so the user is updated too.
+// TODO: Fix create question reducer so the question exists in the API data (answering new question throws an error).
 
 // Phase 3:
 // TODO: Make sure the project Rubric architecture requiremenst are met.
-// TODO: Tidy up styling and colour pallate.
 // TODO: Write project README.
 // TODO: Collect and list references and sources for this project.
 // https://github.com/udacity/reactnd-redux-todos-goals
@@ -51,16 +33,21 @@ import './App.scss';
 // https://tylermcginnis.com
 // Avatars URL: https://www.behance.net/gallery/47035405/Free-avatars-flat-icons
 
+// Make suer when submitting the project that I make the choice not to put a
+// label on the chose option in favour of the poattern I implemented.
+
 class App extends Component {
   componentDidMount() {
-    this.props.dispatch(populateData())
+    if (this.props.loading) {
+      this.props.dispatch(populateData());
+    }
   }
 
   render() {
     return (
       <div className="App">
-        <LoadingBar />
         <Route  component={Nav} />
+        <LoadingBar className="loading-bar"/>
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/login' component={LoginPage} />

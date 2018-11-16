@@ -1,10 +1,10 @@
 $TEXT_COLOUR:            #666666;
 $WHITE:                  #ffffff;
-$ACCENT_COLOUR:          #dddddd;
-$PRIMARY_COLOUR:         #018C96;
-$PRIMARY_COLOUR_DARK:    #016A66;
-$SECONDARY_COLOUR:       #efb52b;
-$SECONDARY_COLOUR_DARK:  #eb5401;
+$PRIMARY_COLOUR_DARK:    #0B2B48;
+$PRIMARY_COLOUR:         #2B89A0;
+$ACCENT_COLOUR:          #E9EBE0;
+$SECONDARY_COLOUR:       #F2A38A;
+$SECONDARY_COLOUR_DARK:  #C0392B;
 
 $LOGO_SIZE: 400px;
 
@@ -26,6 +26,10 @@ a {
 
 button {
     width: 100%;
+}
+
+button, .button {
+    text-align: center;
     padding: 5px;
     font-size: 1em;
     border: 1px solid $PRIMARY_COLOUR;
@@ -59,6 +63,12 @@ input {
 
 select {
     cursor: pointer;
+}
+
+.loading-bar {
+    background-color: $SECONDARY_COLOUR;
+    height: 5px;
+    position: absolute;
 }
 
 .app-header, .tabs {
@@ -184,10 +194,16 @@ nav {
         .chosen-answer {
             background: $PRIMARY_COLOUR;
             color: $PRIMARY_COLOUR_DARK;
+            &.space-below {
+                padding-bottom: 40px;
+            }
         }
         .alternative-answer {
             background: $SECONDARY_COLOUR;
             color: $SECONDARY_COLOUR_DARK;
+            &.space-above {
+                padding-top: 40px;
+            }
         }
         .comparison-bar {
             display: flex;
@@ -195,15 +211,27 @@ nav {
             text-align: center;
             .chosen-bar {
                 height: 20px;
-                padding: 5px;
+                padding-bottom: 5px;
                 background: $PRIMARY_COLOUR;
                 color: $PRIMARY_COLOUR_DARK;
+                .bar-label.short {
+                    position: relative;
+                    top: -25px;
+                }
             }
             .alternative-bar {
                 height: 20px;
-                padding: 5px;
+                padding-top: 5px;
                 background: $SECONDARY_COLOUR;
                 color: $SECONDARY_COLOUR_DARK;
+                .bar-label.short {
+                    position: relative;
+                    bottom: -25px;
+                    left: -85px;
+                }
+            }
+            .bar-label {
+                min-width: 90px;
             }
         }
     }
@@ -231,6 +259,10 @@ nav {
 
     .teaser {
         text-align: center;
+        &.left {
+            text-align: left;
+            padding-left: 35px;
+        }
     }
 }
 
@@ -363,20 +395,20 @@ nav {
         align-items: center;
         width: $LOGO_SIZE; height: $LOGO_SIZE;
         border-radius: 50%;
-        background: linear-gradient($PRIMARY_COLOUR 50%, $SECONDARY_COLOUR 0);
+        background: linear-gradient($PRIMARY_COLOUR_DARK 50%, $SECONDARY_COLOUR_DARK 0);
 
         &:before, &:after {
             flex: 1;
-            border: solid $LOGO_SIZE/6 $SECONDARY_COLOUR;
+            border: solid $LOGO_SIZE/6 $SECONDARY_COLOUR_DARK;
             height: $LOGO_SIZE/6;
             border-radius: 50%;
-            background: $PRIMARY_COLOUR;
+            background: $PRIMARY_COLOUR_DARK;
             content: ''
         }
 
         &:after {
-            border-color: $PRIMARY_COLOUR;
-            background: $SECONDARY_COLOUR;
+            border-color: $PRIMARY_COLOUR_DARK;
+            background: $SECONDARY_COLOUR_DARK;
         }
     }
 }
