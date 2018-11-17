@@ -6,17 +6,22 @@ import Avatar from './Avatar';
 
 class AnsweredQuestion extends Component {
   render() {
-    const chosenOption = this.props.currentUser.answers[this.props.question.id];
-    const chosenOptionText = this.props.question[chosenOption].text;
-    const otherOption = ['optionOne', 'optionTwo'].filter(opt => opt !== chosenOption);
-    const otherOptionText = this.props.question[otherOption].text;
-    const youAsked = this.props.author.id === this.props.currentUser.id;
+    const {
+      currentUser,
+      author,
+      question,
+      chosenOption,
+      otherOption,
+      chosenCount,
+      otherCount
+    } = this.props;
+    const chosenOptionText = question[chosenOption].text;
+    const otherOptionText = question[otherOption].text;
+    const youAsked = author.id === currentUser.id;
     const askedName = youAsked ? 'you' : this.props.author.name;
-    const chosenCount = this.props.question[chosenOption].votes.length;
-    const otherCount = this.props.question[otherOption].votes.length;
     const totalCount = chosenCount + otherCount;
-    const chosenPercent = (chosenCount / totalCount) * 100;
-    const otherPercent = (otherCount / totalCount) * 100;
+    const chosenPercent = Math.round((chosenCount / totalCount) * 100);
+    const otherPercent = Math.round((otherCount / totalCount) * 100);
 
     return (
       <div className="component-wrapper answered-question">
@@ -24,7 +29,7 @@ class AnsweredQuestion extends Component {
           Asked by {askedName}:
         </h2>
         <div className="component-body">
-          <Avatar size="large" user={this.props.author} />
+          <Avatar size="large" user={author} />
           { this.props.preview &&
             <div className="component-copy">
               <div className="prompt">
@@ -35,7 +40,7 @@ class AnsweredQuestion extends Component {
               </div>
               <Link
                 className="button"
-                to={`/questions/${this.props.question.id}`}
+                to={`/questions/${question.id}`}
               >View Question</Link>
             </div>
           }
@@ -79,7 +84,19 @@ AnsweredQuestion.propTypes = {
 function mapStateToProps ({ currentUser: currentUserId, users, questions }, ownProps) {
   const question = questions[ownProps.questionId];
   const author = users[question.author];
-  return { currentUser: users[currentUserId], author, question };
+  const chosenOption = users[currentUserId].answers[question.id];
+  const otherOption = ['optionOne', 'optionTwo'].filter(opt => opt !== chosenOption);
+  const chosenCount = question[chosenOption].votes.length;
+  const otherCount = question[otherOption].votes.length;
+  return {
+    currentUser: users[currentUserId],
+    author,
+    question,
+    chosenOption,
+    otherOption,
+    chosenCount,
+    otherCount
+  };
 }
 
 export default connect(mapStateToProps)(AnsweredQuestion);

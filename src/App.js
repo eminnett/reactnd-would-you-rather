@@ -13,13 +13,9 @@ import LoginPage from './pages/Login';
 import FourOhFourPage from './pages/FourOhFour';
 import './App.scss';
 
-// Phase 2:
-// TODO: Fix answer question reducer so the question votes are updated too.
-// TODO: Fix create question reducer so the user is updated too.
-// TODO: Fix create question reducer so the question exists in the API data (answering new question throws an error).
-
 // Phase 3:
 // TODO: Make sure the project Rubric architecture requiremenst are met.
+// TODO: Test, test, and test again.
 // TODO: Write project README.
 // TODO: Collect and list references and sources for this project.
 // https://github.com/udacity/reactnd-redux-todos-goals
