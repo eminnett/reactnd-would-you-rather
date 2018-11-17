@@ -1,44 +1,51 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Would You Rather?
+## React & Redux Project
+#### React Nanodegree (Udacity)
+Project submission by Edward Minnett (ed@methodic.io).
 
-## Available Scripts
+November 17th, 2018. (Revision 1)
 
-In the project directory, you can run:
+----------
 
-### `npm start`
+## Overview
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is the final assessment project for Udacity's React & Redux course. The goal of the project is to demonstrate an understanding of the Redux Javascript framework, how to use it in conjunction with the React javascript framework, and the best practices for the use of React and Redux when building single page applications.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+The project takes the form of the well known "Would you rather?" binary choice game. Participants are able to do the following while using the application:
 
-### `npm test`
+- View questions they have answered.
+- View questions they have not yet answered.
+- Create new questions.
+- View a leaderboard ranking users by the sum of the questions they have answered and created.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+For the sake of simplicity and because this is just a demo application, the application doesn't include a true authentication user journey. Instead, there is a choice of three users who can be selected from a drop-down list when 'logging in'. The current user can be changed by 'logging out' and selecting a different user from the dropdown.
 
-### `npm run build`
+This application uses a fake database (`/src/utils/_DATA.js`) provided by Udacity as a way to pre-populate the application's data store. Changes made to the data store are then cached via local storage to persist the application's state.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+To run the application, clone the project to a local directory and execute the following:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* install all project dependencies with `npm install`
+* start the development server with `npm start`
 
-### `npm run eject`
+The application will then be available at `http://localhost:3000/`.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## References & Sources
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The following sources were used as reference while working on this project:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- https://github.com/udacity/reactnd-redux-todos-goals
+- https://github.com/udacity/reactnd-chirper-app
+- https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+- https://css-tricks.com/creating-yin-yang-loaders-web/
+- https://stackoverflow.com
+- https://developer.mozilla.org
+- https://reacttraining.com/react-router
+- https://reactjs.org/docs/
+- https://tylermcginnis.com
+- http://colormind.io/
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The three avatar images used for this project came from Dmitriy Bondarchuk's flat avatars project:
+- https://www.behance.net/gallery/47035405/Free-avatars-flat-icons
+The license for these avatars as found on the Behance page is described as "Attribution, Non-commercial, No Derivatives".

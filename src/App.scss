@@ -195,38 +195,40 @@ nav {
             background: $PRIMARY_COLOUR;
             color: $PRIMARY_COLOUR_DARK;
             &.space-below {
-                padding-bottom: 40px;
+                padding-bottom: 30px;
             }
         }
         .alternative-answer {
             background: $SECONDARY_COLOUR;
             color: $SECONDARY_COLOUR_DARK;
             &.space-above {
-                padding-top: 40px;
+                padding-top: 30px;
             }
         }
         .comparison-bar {
             display: flex;
             flex-direction: row;
             text-align: center;
+            border-top: 1px solid $ACCENT_COLOUR;
+            border-bottom: 1px solid $ACCENT_COLOUR;
             .chosen-bar {
                 height: 20px;
-                padding-bottom: 5px;
+                padding: 5px 0;
                 background: $PRIMARY_COLOUR;
                 color: $PRIMARY_COLOUR_DARK;
                 .bar-label.short {
                     position: relative;
-                    top: -25px;
+                    top: -30px;
                 }
             }
             .alternative-bar {
                 height: 20px;
-                padding-top: 5px;
+                padding: 5px 0;
                 background: $SECONDARY_COLOUR;
                 color: $SECONDARY_COLOUR_DARK;
                 .bar-label.short {
                     position: relative;
-                    bottom: -25px;
+                    bottom: -30px;
                     left: -85px;
                 }
             }
