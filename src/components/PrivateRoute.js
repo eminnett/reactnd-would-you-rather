@@ -1,31 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // This pattern has been modified from https://reacttraining.com/react-router/web/example/auth-workflow
-class PrivateRoute extends Component {
-  render() {
-    let { component, isAuthenticated, ...rest } = this.props;
-    const Comp = component;
-    return (
-      <Route
-        {...rest}
-        render={props =>
-          isAuthenticated ? (
-            <Comp {...props} />
-          ) : (
-            <Redirect
-              to={{
-                pathname: "/login",
-                state: { from: props.location }
-              }}
-            />
-          )
-        }
-      />
-    );
-  }
+const PrivateRoute = () => {
+  let { component, isAuthenticated, ...rest } = this.props;
+  const Comp = component;
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        isAuthenticated ? (
+          <Comp {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: props.location }
+            }}
+          />
+        )
+      }
+    />
+  );
 }
 
 PrivateRoute.propTypes = {
